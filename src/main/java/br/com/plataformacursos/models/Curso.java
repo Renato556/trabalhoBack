@@ -1,17 +1,24 @@
 package br.com.plataformacursos.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
+@Entity
 public class Curso {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String titulo;
-    private List<Modulo> modulos;
+    private List<Modulo> moduloList;
     private String diploma;
 
-    public Curso(long id, String titulo, List<Modulo> modulos, String diploma) {
+    public Curso(long id, String titulo, List<Modulo> moduloList, String diploma) {
         this.id = id;
         this.titulo = titulo;
-        this.modulos = modulos;
+        this.moduloList = moduloList;
         this.diploma = diploma;
     }
 
@@ -29,11 +36,11 @@ public class Curso {
         this.titulo = titulo;
     }
 
-    public List<Modulo> getModulos() {
-        return modulos;
+    public List<Modulo> getModuloList() {
+        return moduloList;
     }
-    public void setModulos(List<Modulo> modulos) {
-        this.modulos = modulos;
+    public void setModuloList(List<Modulo> moduloList) {
+        this.moduloList = moduloList;
     }
 
     public String getDiploma() {

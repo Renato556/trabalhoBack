@@ -1,21 +1,28 @@
 package br.com.plataformacursos.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
+@Entity
 public class Modulo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String titulo;
     private String resumo;
-    private List<Materia> materias;
-    private List<Professor> professores;
+    private List<Materia> materiaList;
+    private List<Professor> professorList;
     private String certificado;
 
-    public Modulo(long id, String titulo, String resumo, List<Materia> materias, List<Professor> professores, String certificado) {
+    public Modulo(long id, String titulo, String resumo, List<Materia> materiaList, List<Professor> professorList, String certificado) {
         this.id = id;
         this.titulo = titulo;
         this.resumo = resumo;
-        this.materias = materias;
-        this.professores = professores;
+        this.materiaList = materiaList;
+        this.professorList = professorList;
         this.certificado = certificado;
     }
 
@@ -40,18 +47,18 @@ public class Modulo {
         this.resumo = resumo;
     }
 
-    public List<Materia> getMaterias() {
-        return materias;
+    public List<Materia> getMateriaList() {
+        return materiaList;
     }
-    public void setMaterias(List<Materia> materias) {
-        this.materias = materias;
+    public void setMateriaList(List<Materia> materiaList) {
+        this.materiaList = materiaList;
     }
 
-    public List<Professor> getProfessores() {
-        return professores;
+    public List<Professor> getProfessorList() {
+        return professorList;
     }
-    public void setProfessores(List<Professor> professores) {
-        this.professores = professores;
+    public void setProfessorList(List<Professor> professorList) {
+        this.professorList = professorList;
     }
 
     public String getCertificado() {

@@ -1,18 +1,25 @@
 package br.com.plataformacursos.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
+@Entity
 public class Materia {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     String titulo;
     String cargaHoraria;
-    List<Material> material;
+    List<Material> materialList;
 
-    public Materia(int id, String titulo, String cargaHoraria, List<Material> material) {
+    public Materia(int id, String titulo, String cargaHoraria, List<Material> materialList) {
         this.id = id;
         this.titulo = titulo;
         this.cargaHoraria = cargaHoraria;
-        this.material = material;
+        this.materialList = materialList;
     }
 
     public int getId() {
@@ -39,11 +46,11 @@ public class Materia {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public List<Material> getMaterial() {
-        return material;
+    public List<Material> getMaterialList() {
+        return materialList;
     }
 
-    public void setMaterial(List<Material> material) {
-        this.material = material;
+    public void setMaterialList(List<Material> materialList) {
+        this.materialList = materialList;
     }
 }
