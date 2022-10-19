@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class CursoServiceImpl implements CursoService {
+    @Autowired
     CursoRepository cursoRepository;
 
     @Override
@@ -29,7 +30,7 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
-    public void deleteAllCursos(String authorization) {
+    public void deleteAllCurso(String authorization) {
         if (authorization != null) {
             cursoRepository.deleteAll();
         }

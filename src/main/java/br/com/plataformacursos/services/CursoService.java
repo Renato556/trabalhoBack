@@ -5,10 +5,10 @@ import br.com.plataformacursos.models.Curso;
 import java.util.List;
 
 public interface CursoService {
-    Curso getCursoById(long cursoId);
+    Curso getCursoById(long id);
     List<Curso> getAllCurso();
-    void deleteCursoById(String authorization, long cursoId);
-    void deleteAllCursos(String authorization);
-    void updateCursoById(String authorization, long cursoId, Curso curso);
+    void deleteCursoById(String authorization, long id);
+    void deleteAllCurso(String authorization);
+    void updateCursoById(String authorization, long id, Curso curso);
     void insertCurso(String authorization, Curso curso);
 }
