@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProfessorServiceImpl implements ProfessorService {
@@ -13,7 +14,7 @@ public class ProfessorServiceImpl implements ProfessorService {
     ProfessorRepository professorRepository;
 
     @Override
-    public Professor getProfessorById(long id) {
+    public Optional<Professor> getProfessorById(long id) {
         return professorRepository.findById(id);
     }
 
@@ -23,30 +24,12 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    public void deleteProfessorById(String authorization, long id) {
-        if (authorization != null) {
-            professorRepository.deleteById(id);
-        }
+    public void deleteProfessor(long id) {
+        professorRepository.deleteById(id);
     }
 
     @Override
-    public void deleteAllProfessor(String authorization) {
-        if (authorization != null) {
-            professorRepository.deleteAll();
-        }
-    }
-
-    @Override
-    public void updateProfessorById(String authorization, long id, Professor professor) {
-        if (authorization != null) {
-            professorRepository.save(id, professor);
-        }
-    }
-
-    @Override
-    public void insertProfessor(String authorization, Professor professor) {
-        if (authorization != null) {
-            professorRepository.save(professor);
-        }
+    public void insertProfessor(Professor professor) {
+        professorRepository.save(professor);
     }
 }

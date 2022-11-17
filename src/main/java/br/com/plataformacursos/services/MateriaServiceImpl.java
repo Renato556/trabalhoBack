@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MateriaServiceImpl implements MateriaService{
@@ -13,7 +14,7 @@ public class MateriaServiceImpl implements MateriaService{
     MateriaRepository materiaRepository;
 
     @Override
-    public Materia getMateriaById(long id) {
+    public Optional<Materia> getMateriaById(long id) {
         return materiaRepository.findById(id);
     }
 
@@ -23,30 +24,12 @@ public class MateriaServiceImpl implements MateriaService{
     }
 
     @Override
-    public void deleteMateriaById(String authorization, long id) {
-        if (authorization != null) {
-            materiaRepository.deleteById(id);
-        }
+    public void deleteMateria(long id) {
+       materiaRepository.deleteById(id);
     }
 
     @Override
-    public void deleteAllMateria(String authorization) {
-        if (authorization != null) {
-            materiaRepository.deleteAll();
-        }
-    }
-
-    @Override
-    public void updateMateriaById(String authorization, long id, Materia materia) {
-        if (authorization != null) {
-            materiaRepository.save(id, materia);
-        }
-    }
-
-    @Override
-    public void insertMateria(String authorization, Materia materia) {
-        if (authorization != null) {
-            materiaRepository.save(materia);
-        }
+    public void insertMateria(Materia materia) {
+        materiaRepository.save(materia);
     }
 }

@@ -9,21 +9,15 @@ import javax.persistence.Id;
 public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    String titulo;
-    String formato;
+    private long id;
+    private String titulo;
+    private String formato;
 
-    public Material(int id, String titulo, String formato) {
-        this.id = id;
-        this.titulo = titulo;
-        this.formato = formato;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

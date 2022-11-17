@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ModuloServiceImpl implements ModuloService {
@@ -13,7 +14,7 @@ public class ModuloServiceImpl implements ModuloService {
     ModuloRepository moduloRepository;
 
     @Override
-    public Modulo getModuloById(long id) {
+    public Optional<Modulo> getModuloById(long id) {
         return moduloRepository.findById(id);
     }
 
@@ -23,30 +24,12 @@ public class ModuloServiceImpl implements ModuloService {
     }
 
     @Override
-    public void deleteModuloById(String authorization, long id) {
-        if (authorization != null) {
-            moduloRepository.deleteById(id);
-        }
+    public void deleteModulo(long id) {
+        moduloRepository.deleteById(id);
     }
 
     @Override
-    public void deleteAllModulo(String authorization) {
-        if (authorization != null) {
-            moduloRepository.deleteAll();
-        }
-    }
-
-    @Override
-    public void updateModuloById(String authorization, long id, Modulo modulo) {
-        if (authorization != null) {
-            moduloRepository.save(id, modulo);
-        }
-    }
-
-    @Override
-    public void insertModulo(String authorization, Modulo modulo) {
-        if (authorization != null) {
-            moduloRepository.save(modulo);
-        }
+    public void insertModulo(Modulo modulo) {
+        moduloRepository.save(modulo);
     }
 }

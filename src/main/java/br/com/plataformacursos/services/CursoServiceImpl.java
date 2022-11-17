@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CursoServiceImpl implements CursoService {
@@ -13,7 +14,7 @@ public class CursoServiceImpl implements CursoService {
     CursoRepository cursoRepository;
 
     @Override
-    public Curso getCursoById(long cursoId) {
+    public Optional<Curso> getCursoById(long cursoId) {
         return cursoRepository.findById(cursoId);
     }
 
@@ -23,30 +24,12 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
-    public void deleteCursoById(String authorization, long cursoId) {
-        if (authorization != null) {
-            cursoRepository.deleteById(cursoId);
-        }
+    public void deleteCurso(long cursoId) {
+        cursoRepository.deleteById(cursoId);
     }
 
     @Override
-    public void deleteAllCurso(String authorization) {
-        if (authorization != null) {
-            cursoRepository.deleteAll();
-        }
-    }
-
-    @Override
-    public void updateCursoById(String authorization, long cursoId, Curso curso) {
-        if (authorization != null) {
-            cursoRepository.save(cursoId, curso);
-        }
-    }
-
-    @Override
-    public void insertCurso(String authorization, Curso curso) {
-        if (authorization != null) {
-            cursoRepository.save(curso);
-        }
+    public void insertCurso(Curso curso) {
+        cursoRepository.save(curso);
     }
 }

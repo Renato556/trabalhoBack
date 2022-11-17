@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/rest/instituicao")
@@ -14,33 +15,37 @@ public class InstituicaoBDRestController {
     private InstituicaoService instituicaoService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<Instituicao> getAllInstituicao() {
+    public List<Instituicao> getInstituicao() {
         return instituicaoService.getAllInstituicao();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Instituicao getInstituicaoById(@PathVariable("id") long id) {
+    public Optional<Instituicao> getInstituicaoById(@PathVariable("id") long id) {
         return instituicaoService.getInstituicaoById(id);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.DELETE)
-    public void deleteAllInstituicao(@RequestHeader("authorization") String authorization) {
-        instituicaoService.deleteAllInstituicao(authorization);
+    public void deleteAllInstituicao() {
+        instituicaoService.getAllInstituicao().forEach(instituicao -> instituicaoService.deleteInstituicao(instituicao.getId()));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteInstituicaoById(@RequestHeader("authorization") String authorization, @PathVariable("id") long id) {
-        instituicaoService.deleteInstituicaoById(authorization, id);
+    public void deleteInstituicao(@PathVariable("id") long id) {
+        if (instituicaoService.getInstituicaoById(id).isPresent()) {
+            instituicaoService.deleteInstituicao(id);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void updateInstituicaoById(@RequestHeader("authorization") String authorization, @PathVariable("id") long id, @RequestBody Instituicao instituicao) {
-        instituicaoService.updateInstituicaoById(authorization, id, instituicao);
+    public void updateInstituicao(@PathVariable("id") long id, @RequestBody Instituicao instituicao) {
+        if (instituicaoService.getInstituicaoById(id).isPresent()) {
+            instituicao.setId(id);
+            instituicaoService.insertInstituicao(instituicao);
+        }
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public void insertInstituicao(@RequestHeader("authorization") String authorization, @RequestBody Instituicao instituicao) {
-        instituicaoService.insertInstituicao(authorization, instituicao);
+    public void insertInstituicao(@RequestBody Instituicao instituicao) {
+        instituicaoService.insertInstituicao(instituicao);
     }
-
 }

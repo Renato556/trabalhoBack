@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/rest/modulo")
@@ -19,27 +20,32 @@ public class ModuloBdRestController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Modulo getModulo(@PathVariable("id") long id) {
+    public Optional<Modulo> getModulo(@PathVariable("id") long id) {
         return moduloService.getModuloById(id);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.DELETE)
-    public void deleteModulo(@RequestHeader("authorization") String authorization) {
-        moduloService.deleteAllModulo(authorization);
+    public void deleteModulo() {
+        moduloService.getAllModulo().forEach(modulo -> moduloService.deleteModulo(modulo.getId()));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteModulo(@RequestHeader("authorization") String authorization, @PathVariable("id") long id) {
-        moduloService.deleteModuloById(authorization, id);
+    public void deleteModulo(@PathVariable("id") long id) {
+        if (moduloService.getModuloById(id).isPresent()) {
+            moduloService.deleteModulo(id);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void updateModulo(@RequestHeader("authorization") String authorization, @PathVariable("id") long id, @RequestBody Modulo modulo) {
-        moduloService.updateModuloById(authorization, id, modulo);
+    public void updateModulo(@PathVariable("id") long id, @RequestBody Modulo modulo) {
+        if (moduloService.getModuloById(id).isPresent()) {
+            modulo.setId(id);
+            moduloService.insertModulo(modulo);
+        }
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public void insertModulo(@RequestHeader("authorization") String authorization, @RequestBody Modulo modulo) {
-        moduloService.insertModulo(authorization, modulo);
+    public void insertModulo(@RequestBody Modulo modulo) {
+        moduloService.insertModulo(modulo);
     }
 }

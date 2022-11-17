@@ -1,19 +1,22 @@
 package br.com.plataformacursos.services;
 
+import br.com.plataformacursos.models.Curso;
 import br.com.plataformacursos.models.Instituicao;
 import br.com.plataformacursos.repository.InstituicaoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InstituicaoServiceImpl implements InstituicaoService{
-
+    @Autowired
     InstituicaoRepository instituicaoRepository;
 
     @Override
-    public Instituicao getInstituicaoById(long id) {
-        return instituicaoRepository.findById(id);
+    public Optional<Instituicao> getInstituicaoById(long instituicaoId) {
+        return instituicaoRepository.findById(instituicaoId);
     }
 
     @Override
@@ -22,30 +25,12 @@ public class InstituicaoServiceImpl implements InstituicaoService{
     }
 
     @Override
-    public void deleteInstituicaoById(String authorization, long id) {
-        if (authorization != null){
-            instituicaoRepository.deleteById(id);
-        }
+    public void deleteInstituicao(long instituicaoId) {
+        instituicaoRepository.deleteById(instituicaoId);
     }
 
     @Override
-    public void deleteAllInstituicao(String authorization) {
-        if (authorization != null){
-            instituicaoRepository.deleteAll();
-        }
-    }
-
-    @Override
-    public void updateInstituicaoById(String authorization, long id, Instituicao instituicao) {
-        if (authorization != null){
-            instituicaoRepository.save(id, instituicao);
-        }
-    }
-
-    @Override
-    public void insertInstituicao(String authorization, Instituicao instituicao) {
-        if (authorization != null){
-            instituicaoRepository.save(instituicao);
-        }
+    public void insertInstituicao(Instituicao instituicao) {
+        instituicaoRepository.save(instituicao);
     }
 }

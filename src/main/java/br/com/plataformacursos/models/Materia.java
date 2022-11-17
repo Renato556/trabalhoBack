@@ -10,23 +10,16 @@ import java.util.List;
 public class Materia {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    String titulo;
-    String cargaHoraria;
-    List<Material> materialList;
+    private long id;
+    private String titulo;
+    private String cargaHoraria;
+    private List<Material> materialList;
 
-    public Materia(int id, String titulo, String cargaHoraria, List<Material> materialList) {
-        this.id = id;
-        this.titulo = titulo;
-        this.cargaHoraria = cargaHoraria;
-        this.materialList = materialList;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
