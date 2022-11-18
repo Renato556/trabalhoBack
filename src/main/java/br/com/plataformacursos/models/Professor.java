@@ -1,9 +1,6 @@
 package br.com.plataformacursos.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -12,12 +9,16 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String nome;
-    private List<Materia> materiaList;
 
-    public Professor(long id, String nome, List<Materia> materiaList) {
-        this.id = id;
-        this.nome = nome;
-        this.materiaList = materiaList;
+    @OneToOne(mappedBy = "professor")
+    private Materia materia;
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
     }
 
     public long getId() {
@@ -34,13 +35,5 @@ public class Professor {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public List<Materia> getMateriaList() {
-        return materiaList;
-    }
-
-    public void setMateriaList(List<Materia> materiaList) {
-        this.materiaList = materiaList;
     }
 }

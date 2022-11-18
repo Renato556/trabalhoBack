@@ -1,9 +1,7 @@
 package br.com.plataformacursos.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Material {
@@ -12,6 +10,9 @@ public class Material {
     private long id;
     private String titulo;
     private String formato;
+
+    @ManyToMany(mappedBy = "materialList")
+    private List<Materia> materiaList;
 
     public long getId() {
         return id;
@@ -35,5 +36,13 @@ public class Material {
 
     public void setFormato(String formato) {
         this.formato = formato;
+    }
+
+    public List<Materia> getMateriaList() {
+        return materiaList;
+    }
+
+    public void setMateriaList(List<Materia> materiaList) {
+        this.materiaList = materiaList;
     }
 }

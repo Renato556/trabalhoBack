@@ -1,9 +1,6 @@
 package br.com.plataformacursos.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -13,17 +10,21 @@ public class Modulo {
     private long id;
     private String titulo;
     private String resumo;
-    private List<Materia> materiaList;
-    private List<Professor> professorList;
     private String certificado;
+    @OneToMany
+    @JoinColumn(name = "modulo_id")
+    private List<Materia> materiaList;
 
-    public Modulo(long id, String titulo, String resumo, List<Materia> materiaList, List<Professor> professorList, String certificado) {
-        this.id = id;
-        this.titulo = titulo;
-        this.resumo = resumo;
-        this.materiaList = materiaList;
-        this.professorList = professorList;
-        this.certificado = certificado;
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
     public long getId() {
@@ -52,13 +53,6 @@ public class Modulo {
     }
     public void setMateriaList(List<Materia> materiaList) {
         this.materiaList = materiaList;
-    }
-
-    public List<Professor> getProfessorList() {
-        return professorList;
-    }
-    public void setProfessorList(List<Professor> professorList) {
-        this.professorList = professorList;
     }
 
     public String getCertificado() {

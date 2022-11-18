@@ -1,9 +1,6 @@
 package br.com.plataformacursos.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -12,13 +9,12 @@ public class Instituicao {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String nome;
+    @ManyToMany
+    @JoinTable(
+            name = "instituicao_curso",
+            joinColumns = @JoinColumn(name = "curso_id"),
+            inverseJoinColumns = @JoinColumn(name = "instituicao_id"))
     private List<Curso> cursoList;
-
-    public Instituicao(long id, String nome, List<Curso> cursoList) {
-        this.id = id;
-        this.nome = nome;
-        this.cursoList = cursoList;
-    }
 
     public long getId() {
         return id;

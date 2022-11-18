@@ -1,9 +1,6 @@
 package br.com.plataformacursos.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -13,7 +10,36 @@ public class Materia {
     private long id;
     private String titulo;
     private String cargaHoraria;
+    @ManyToMany
+    @JoinTable(
+            name = "disciplina_material",
+            joinColumns = @JoinColumn(name = "materia_id"),
+            inverseJoinColumns = @JoinColumn(name = "material_id"))
     private List<Material> materialList;
+
+    @ManyToOne
+    @JoinColumn(name = "modulo_id")
+    private Modulo modulo;
+
+    @OneToOne
+    @JoinColumn(name = "professor_id")
+    private Professor professor;
+
+    public Modulo getModulo() {
+        return modulo;
+    }
+
+    public void setModulo(Modulo modulo) {
+        this.modulo = modulo;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
 
     public long getId() {
         return id;

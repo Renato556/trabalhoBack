@@ -1,9 +1,6 @@
 package br.com.plataformacursos.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -12,14 +9,20 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String titulo;
-    private List<Modulo> moduloList;
     private String diploma;
+    @OneToMany
+    @JoinColumn(name = "curso_id")
+    private List<Modulo> moduloList;
 
-    public Curso(long id, String titulo, List<Modulo> moduloList, String diploma) {
-        this.id = id;
-        this.titulo = titulo;
-        this.moduloList = moduloList;
-        this.diploma = diploma;
+    @ManyToMany(mappedBy = "cursoList")
+    private List<Instituicao> instituicaoList;
+
+    public List<Instituicao> getInstituicaoList() {
+        return instituicaoList;
+    }
+
+    public void setInstituicaoList(List<Instituicao> instituicaoList) {
+        this.instituicaoList = instituicaoList;
     }
 
     public long getId() {
