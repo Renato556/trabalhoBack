@@ -12,7 +12,6 @@ import java.util.Optional;
 public class CursoServiceImpl implements CursoService {
     @Autowired
     CursoRepository cursoRepository;
-
     @Override
     public Optional<Curso> getCursoById(long cursoId) {
         return cursoRepository.findById(cursoId);
