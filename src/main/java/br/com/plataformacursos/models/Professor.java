@@ -14,7 +14,6 @@ public class Professor {
 
     @JsonIgnore
     @OneToOne
-    @JoinColumn(name = "materia_id")
     private Materia materia;
 
     public Materia getMateria() {

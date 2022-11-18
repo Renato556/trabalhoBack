@@ -12,7 +12,6 @@ public class Modulo {
     private long id;
     private String titulo;
     private String resumo;
-    private String certificado;
     @OneToMany
     @JoinColumn(name = "modulo_id")
     private List<Materia> materiaList;
@@ -56,12 +55,5 @@ public class Modulo {
     }
     public void setMateriaList(List<Materia> materiaList) {
         this.materiaList = materiaList;
-    }
-
-    public String getCertificado() {
-        return certificado;
-    }
-    public void setCertificado(String certificado) {
-        this.certificado = certificado;
     }
 }
