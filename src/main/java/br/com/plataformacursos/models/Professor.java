@@ -1,5 +1,7 @@
 package br.com.plataformacursos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,7 +12,9 @@ public class Professor {
     private long id;
     private String nome;
 
-    @OneToOne(mappedBy = "professor")
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "materia_id")
     private Materia materia;
 
     public Materia getMateria() {

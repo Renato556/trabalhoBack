@@ -44,7 +44,7 @@ public class CursoBdRestController {
         }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public void insertCurso(@RequestBody Curso curso) {
         cursoService.insertCurso(curso);
     }

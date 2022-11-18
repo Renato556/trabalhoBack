@@ -14,7 +14,7 @@ public class ModuloBdRestController {
     @Autowired
     private ModuloService moduloService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Modulo> getModulo() {
         return moduloService.getAllModulo();
     }
@@ -44,7 +44,7 @@ public class ModuloBdRestController {
         }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public void insertModulo(@RequestBody Modulo modulo) {
         moduloService.insertModulo(modulo);
     }

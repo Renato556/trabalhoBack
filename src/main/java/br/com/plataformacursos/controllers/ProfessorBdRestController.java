@@ -14,7 +14,7 @@ public class ProfessorBdRestController {
     @Autowired
     private ProfessorService professorService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Professor> getProfessor() {
         return professorService.getAllProfessor();
     }
@@ -44,7 +44,7 @@ public class ProfessorBdRestController {
         }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public void insertProfessor(@RequestBody Professor professor) {
         professorService.insertProfessor(professor);
     }

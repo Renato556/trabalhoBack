@@ -1,5 +1,7 @@
 package br.com.plataformacursos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class Material {
     private String titulo;
     private String formato;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "materialList")
     private List<Materia> materiaList;
 

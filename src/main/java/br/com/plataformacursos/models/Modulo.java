@@ -1,5 +1,7 @@
 package br.com.plataformacursos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class Modulo {
     @JoinColumn(name = "modulo_id")
     private List<Materia> materiaList;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "curso_id")
     private Curso curso;

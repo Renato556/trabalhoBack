@@ -14,7 +14,7 @@ public class InstituicaoBDRestController {
     @Autowired
     private InstituicaoService instituicaoService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Instituicao> getInstituicao() {
         return instituicaoService.getAllInstituicao();
     }
@@ -44,7 +44,7 @@ public class InstituicaoBDRestController {
         }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public void insertInstituicao(@RequestBody Instituicao instituicao) {
         instituicaoService.insertInstituicao(instituicao);
     }

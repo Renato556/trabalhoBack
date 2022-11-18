@@ -15,7 +15,7 @@ public class MateriaBDRestController {
     @Autowired
     private MateriaService materiaService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Materia> getMateria() {
         return materiaService.getAllMateria();
     }
@@ -45,7 +45,7 @@ public class MateriaBDRestController {
         }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public void insertMateria(@RequestBody Materia materia) {
         materiaService.insertMateria(materia);
     }

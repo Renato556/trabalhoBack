@@ -1,5 +1,7 @@
 package br.com.plataformacursos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class Materia {
             inverseJoinColumns = @JoinColumn(name = "material_id"))
     private List<Material> materialList;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "modulo_id")
     private Modulo modulo;
